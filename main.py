@@ -2,12 +2,6 @@ import tensorflow as tf
 import tensorflow_hub as hub
 import numpy as np
 import os
-import pandas as pd
-import matplotlib.pyplot as plt 
-import base64
-from PIL import Image
-import io
-import math 
 from math import sqrt
 from flask import Flask, request, jsonify
 global embed
@@ -29,28 +23,6 @@ class TensorVector(object):
         return list(feature_set)
     
 
-
-def convertBase64(FileName):
-    """
-    Return the Numpy array for a image 
-    """
-    with open(FileName, "rb") as f:
-        data = f.read()
-        
-    res = base64.b64encode(data)
-    
-    base64data = res.decode("UTF-8")
-    
-    imgdata = base64.b64decode(base64data)
-    
-    image = Image.open(io.BytesIO(imgdata))
-    
-    return np.array(image)
-
-
-
-
-
 def cosineSim(a1,a2):
     sum = 0
     suma1 = 0
@@ -61,8 +33,6 @@ def cosineSim(a1,a2):
         sum += i*j
     cosine_sim = sum / ((sqrt(suma1))*(sqrt(sumb1)))
     return cosine_sim
-
-
 
 
 
